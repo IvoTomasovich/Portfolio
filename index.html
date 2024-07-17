@@ -25,6 +25,7 @@
         </section>
 
         <section id="section2">
+            <div class="section-content project">
             <div class="project">
                 <h1>Playstation Trophy Collection Site</h1>
                 <p>This site uses Google Firebase to allow users to create an account. Users can take a PlayStation platinum trophy guide from PSN profiles and input the link into a box. The site then parses that link for all the trophies and their descriptions, displaying them to the user. Users have the option to store the list to their account, where they can view every list they've saved.</p>
@@ -32,8 +33,10 @@
                     <a href="https://youtu.be/yIWxYuVdScE" class="button demo" target="_blank"><i class="fab fa-youtube"></i>Demo</a>
                     <a href="https://github.com/BookableGull/Playstation-Trophy-List-Tracker" class="button github" target="_blank"><i class="fab fa-github"></i>GitHub</a>
                 </div>
+                </div>
             </div>
             <div class="project">
+                <div class="section-content project">
                 <h1>AI Driven Chatbot</h1>
                 <p>This chatbot uses the Mistral model, downloaded using Ollama, in Python to take in links for whatever the user wants. Then, so long as the answer can be found in that collection of links, the chatbot can answer any question the user has.</p>
                 <div class="buttons">
@@ -41,7 +44,9 @@
                     <a href="https://github.com/BookableGull/Ollama-URL-Driven-Chatbot" class="button github" target="_blank"><i class="fab fa-github"></i>GitHub</a>
                 </div>
             </div>
+            </div>
             <div class="project">
+                <div class="section-content project">
                 <h1>Video Game Backlog Tracker</h1>
                 <p>This program uses parsing to retrieve data from the video game website HowLongToBeat. Specifically, for any game link the user inputs, it fetches data on how long it takes to beat the main story, main + sides, completionist, and all styles. Once the user finishes, all this data is compiled into an Excel sheet for easy viewing. Additionally, there are columns that aggregate the numbers for each category, allowing users to see the total time needed to complete every style for all their games in the list. This program is designed to help users organize their entire gaming backlog conveniently. Furthermore, it provides average completion times for each game in various styles, reducing the need for users to repeatedly check HowLongToBeat for this information.</p>
                 <div class="buttons">
@@ -49,7 +54,9 @@
                     <a href="https://github.com/BookableGull/Video-Game-Backlog-Hour-Tracker" class="button github" target="_blank"><i class="fab fa-github"></i>GitHub</a>
                 </div>
             </div>
+            </div>
             <div class="project">
+                <div class="section-content project">
                 <h1>Camelot Adventure Game</h1>
                 <p>This is an adventure game written in Java. It utilizes a custom game engine called Camelot, enabling various actions and settings. The objective of the game is to uncover the identity of the murderer at the kingdom's local alchemy shop. Players explore different areas, interact with NPCs, and gather evidence. There are significant consequences if the player fails to identify the killer.</p>
                 <div class="buttons">
@@ -57,9 +64,11 @@
                     <a href="https://github.com/BookableGull/CamelotProject" class="button github" target="_blank"><i class="fab fa-github"></i>GitHub</a>
                 </div>
             </div>
+            </div>
         </section>
 
         <section id="section3">
+            <div class="section-content">
             <h1>My Skills</h1>
             <div class="logo-container">
             <img src="images/pythonlogo.svg" alt="python" class="skill-logo"/>
@@ -73,36 +82,39 @@
             <img src="images/c.png" alt="c" class="skill-logo"/>
             <img src="images/c++.webp" alt="c++" class="skill-logo"/>
             </div>
+        </div>
         </section>
 
         <section id="section4">
-            <div class="education-container">
-                <div class="project">
-            <img src="images/Tulane.png" alt='tulane' class="tulane"/>
-            <div class="education-text">
-            <h1>Bachelor of Science in Management</h1>
-            <h2>Tulane University</h2>
-            <h2>Graduate in 2026</h2>
-            <h2>GPA: 3.715/4</h2>
-            <ul>
-                <li>Major in Computer Science</li>
-                <li>Major in Business Management</li>
-                <li>Minor in Business Legal Studies</li>
-            </ul>
+            <div class="section-content education-container">
+                <img src="images/Tulane.png" alt='tulane' class="tulane"/>
+                <div class="education-text">
+                    <h1>Bachelor of Science in Management</h1>
+                    <h2>Tulane University</h2>
+                    <h2>Graduate in 2026</h2>
+                    <h2>GPA: 3.715/4</h2>
+                    <ul>
+                        <li>Major in Computer Science</li>
+                        <li>Major in Business Management</li>
+                        <li>Minor in Business Legal Studies</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        </div>
         </section>
-
+        
         <section id="section5">
-            <h1>Contact Me</h1>
-            <h2>You can message me directly at ivotomasovich@gmail.com, itomasovich@tulane.edu or through this form.</h2>
-            <form id="contact-form">
-            <input type="text" id="email" name="email" placeholder="Email" required>
-            <textarea id="message" name="message" placeholder="Message"></textarea>
-            <button type="submit">Send</button>
-        </form>
+            <div class="section-content">
+                <h1>Contact Me</h1>
+                <h2>You can message me directly at ivotomasovich@gmail.com...</h2>
+                <form id="contact-form">
+                    <input type="text" id="email" name="email" placeholder="Email" required>
+                    <textarea id="message" name="message" placeholder="Message"></textarea>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
         </section>
         <script src="scripts/main.js"></script>
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script src="scrollReveal.js"></script>
     </body>
 </html>

@@ -1,13 +1,22 @@
 /* Font for the whole site */
-body{ 
+body {
+    display: grid;
     font-family: Arial, sans-serif;
+    flex-direction: column;
+    align-items: center;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-top: 60px; /* Adjust this value to match the height of your nav */
 }
 
 /* The bar itself */
-nav{
+nav {
     position: fixed;
-    width: 99%;
+    top: 0;
+    width: 100%; /* Make sure the width is 100% */
     background-color: #333;
+    z-index: 1000; /* Ensure it stays above other content */
 }
 
 /* Makes the top bar's contents horizonal rather than vertical */
@@ -41,9 +50,11 @@ nav ul li a:hover {
 
 /* Expands the size of each section by spacing them out */
 section {
-    /* padding: 60px 20px;
-    height: 100vh; */
+    padding: 60px 20px;
+    height: 100vh;
     text-align: center;
+    flex: 1;
+    width: 100%;
 }
 
 /* Makes this image the background image for section one and modifies it a bit */
@@ -65,6 +76,10 @@ section {
 /* Modifies the text */
 #section1 h1{
     text-align: center;
+}
+
+.section {
+    overflow: hidden; /* Clear floats */
 }
 
 /* Modifies my pfp */
@@ -266,5 +281,17 @@ h1 {
 /* Changes the color when you hover over the button */
 #contact-form button:hover {
     background-color: #0056b3;
+}
+
+.section-content {
+    opacity: 0;
+    transform: translateY(20px); /* Example: start from below */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* When element enters viewport, show with animation */
+.section-content.reveal {
+    opacity: 1;
+    transform: translateY(0);
 }
 
