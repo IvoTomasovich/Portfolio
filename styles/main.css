@@ -1,0 +1,270 @@
+/* Font for the whole site */
+body{ 
+    font-family: Arial, sans-serif;
+}
+
+/* The bar itself */
+nav{
+    position: fixed;
+    width: 99%;
+    background-color: #333;
+}
+
+/* Makes the top bar's contents horizonal rather than vertical */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display:flex;
+    justify-content: center;
+}
+
+/* Spaces the links out */
+nav ul li{
+    margin: 0 15px;
+}
+
+/* Further modifies contents in the box and also makes the box larger */
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 14px 20px;
+    display:block;
+}
+
+
+/* When you hover over one of the categories in the bar, this changes the color */
+nav ul li a:hover {
+    background-color: #575757;
+}
+
+
+/* Expands the size of each section by spacing them out */
+section {
+    /* padding: 60px 20px;
+    height: 100vh; */
+    text-align: center;
+}
+
+/* Makes this image the background image for section one and modifies it a bit */
+#section1 {
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    padding: 60px 20px;
+    height: 100vh;
+}
+
+/* Modifies the text */
+#section1 h1{
+    text-align: center;
+}
+
+/* Modifies my pfp */
+.pfp{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover; /*May not need */
+    margin-bottom: 5px;
+}
+
+/* Lines up the pictures and spaces them out */
+.logo-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Modifies the pictures */
+.skill-logo {
+    width: 100px;
+    height: 100px;
+    object-fit:contain;
+}
+
+/* Expands the logos when you hover over them */
+.skill-logo:hover {
+    transform:scale(1.4)
+}
+
+/* Changes the color of every odd section of the site */
+section:nth-of-type(odd) {
+    background-color: #f4f4f4;
+}
+
+/* Changes the color of every even section of the site */
+section:nth-of-type(even) {
+    background-color: #e2e2e2;
+}
+
+/* Adjusts the spacing of each heading a bit */
+h1 {
+    margin-top: 0;
+    padding-top: 60px;
+}
+
+/* Centers the text in section 3 */
+#section3 h1{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Gets the image on the page and modifies it a bit as well as the text*/
+.education-container {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    gap: 20px;
+}
+
+/* Resizes the image */
+.education-container img.tulane {
+    width: 150px;
+    height: auto;
+}
+
+/* Makes sure the text never gets too big */
+.education-container .education-text{
+    max-width: 600px;
+}
+
+/* Begins the modifications for this section and centers the text */
+#section2 {
+    padding: 60px 20px ;
+    text-align: center;
+
+
+
+    height: 100vh;
+}
+
+/* Creates the box for each project and makes it look nice */
+.project{
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 1px solid#ccc;
+    background-color: #f9f9f9;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+}
+
+/* Modifies the h1 part of the box, including the font and the bottom margin of it */
+.project h1{
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Same as the modifications for h1 but for p */
+.project p {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+/* Adjusts the positions of the buttons */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Further changes to the buttons */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* Changes the color of the demo button */
+.button.demo {
+    background-color: #007bff;
+}
+
+/* Changes the color of the github button */
+.button.github {
+    background-color: #333;
+}
+
+/* Changes the color of the demo button when you hover*/
+.button.demo:hover {
+    background-color: #0056b3;
+}
+
+/* Changes the color of the github button when you hover*/
+.button.github:hover {
+    background-color: #1b1b1b;
+}
+
+/* Extends section 2 */
+#section2 {
+    background-color: #f4f4f4;
+    padding-bottom: 1100px;
+}
+/* Modifies section 3 */
+#section3 {
+    background-color: #e2e2e2;
+    /* padding: 20px 10px;
+    margin-bottom: 20px; */
+    padding: 40px 10px;
+    height: 70vh;
+}
+/* Modifies section 4 */
+#section4 {
+    background-color: #f4f4f4;
+    padding: 60px 20px;
+    height: 80vh;
+}
+
+/* Modifies section 5 */
+#section5 {
+    background-color: #e2e2e2;
+    padding: 60px 20px;
+    height: 70vh;
+}
+
+/* Mostly just aligns the boxes and everything in the form a bit better */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Adjusts many aspects of the contact form */
+#contact-form input, #contact-form textarea {
+    width: 80%;
+    max-width: 500px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Makes the button look nice */
+#contact-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+/* Changes the color when you hover over the button */
+#contact-form button:hover {
+    background-color: #0056b3;
+}
+
