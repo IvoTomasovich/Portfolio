@@ -51,10 +51,26 @@ nav ul li a:hover {
 /* Expands the size of each section by spacing them out */
 section {
     padding: 60px 20px;
-    height: 100vh;
+    height: auto; /* Remove fixed height if possible */
     text-align: center;
-    flex: 1;
     width: 100%;
+    min-height: 100vh;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+.pfp {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+}
+
+#section2, #section3, #section4, #section5 {
+    padding: 60px 20px;
+    height: auto;
 }
 
 /* Makes this image the background image for section one and modifies it a bit */
@@ -91,6 +107,13 @@ section {
     margin-bottom: 5px;
 }
 
+.logo-container, .education-container, .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
 /* Lines up the pictures and spaces them out */
 .logo-container{
     display: flex;
@@ -125,6 +148,7 @@ section:nth-of-type(even) {
 h1 {
     margin-top: 0;
     padding-top: 60px;
+    font-size: 2em;
 }
 
 /* Centers the text in section 3 */
@@ -171,6 +195,7 @@ h1 {
     background-color: #f9f9f9;
     max-width: 800px;
     margin: 0 auto 40px auto;
+    overflow: hidden;
 }
 
 /* Modifies the h1 part of the box, including the font and the bottom margin of it */
@@ -295,3 +320,47 @@ h1 {
     transform: translateY(0);
 }
 
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .education-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .project {
+        padding: 10px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #contact-form input, #contact-form textarea {
+        width: 100%;
+    }
+
+    .skill-logo {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2em;
+    }
+}
