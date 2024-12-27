@@ -1,3 +1,12 @@
+section {
+    min-height: 100vh;
+}
+
+section {
+    position: relative;
+    z-index: 1;
+}
+
 /* Remove default margin and padding from body and html */
 html, body {
     margin: 0;
@@ -404,4 +413,19 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+
+    section {
+        padding: 20px;
+    }
 }
