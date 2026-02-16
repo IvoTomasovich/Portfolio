@@ -1,170 +1,1185 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Ivo Tomasovich Portfolio Site</title>
-        <link rel="stylesheet" type="text/css" href="styles/main.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <!-- <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script> -->
-    </head>
-    <body>
-        <nav>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivo Tomasovich — Developer & Consultant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #111118;
+            --bg-card: #16161f;
+            --bg-card-hover: #1c1c28;
+            --text-primary: #e8e6f0;
+            --text-secondary: #9b97a8;
+            --text-muted: #6b6780;
+            --accent: #6c63ff;
+            --accent-light: #8b83ff;
+            --accent-glow: rgba(108, 99, 255, 0.15);
+            --accent-secondary: #00d4aa;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(108, 99, 255, 0.3);
+            --radius: 12px;
+            --radius-lg: 20px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ============ NAVIGATION ============ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        nav .nav-logo {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav .nav-logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 8px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 8px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(108, 99, 255, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 50%, rgba(0, 212, 170, 0.05) 0%, transparent 50%);
+            animation: heroGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroGlow {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-2%, 2%); }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border);
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.2s;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.4s;
+        }
+
+        .hero h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            padding-top: 0;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.6s;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin: 0 auto 36px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.8s;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 1s;
+        }
+
+        .hero-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .hero-links .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .hero-links .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(108, 99, 255, 0.3);
+        }
+
+        .hero-links .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .hero-links .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ SECTIONS ============ */
+        .section {
+            padding: 100px 24px;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            padding-top: 0;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 500px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        /* ============ FEATURED PROJECT ============ */
+        .featured-project {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .featured-project::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+        }
+
+        .featured-project:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-secondary);
+            margin-bottom: 20px;
+        }
+
+        .featured-project h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .featured-project .project-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            max-width: 700px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+
+        .tech-tag {
+            padding: 6px 14px;
+            background: rgba(108, 99, 255, 0.1);
+            border: 1px solid rgba(108, 99, 255, 0.15);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent-light);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .project-link.apple {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .project-link.apple:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--border-hover);
+        }
+
+        .project-link.google {
+            background: rgba(0, 212, 170, 0.1);
+            color: var(--accent-secondary);
+            border: 1px solid rgba(0, 212, 170, 0.15);
+        }
+
+        .project-link.google:hover {
+            background: rgba(0, 212, 170, 0.15);
+        }
+
+        /* ============ PROJECT GRID ============ */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+        }
+
+        .project-card .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .project-card h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .project-card .card-tech {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .project-card .card-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .project-card .card-links a {
+            font-size: 0.82rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .project-card .card-links a:hover {
+            color: var(--accent-light);
+        }
+
+        /* ============ EXPERIENCE ============ */
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .experience-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: var(--transition);
+        }
+
+        .experience-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .exp-header h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .exp-date {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .exp-company {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .exp-location {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            margin-bottom: 16px;
+        }
+
+        .exp-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .exp-bullets li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .exp-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0.5;
+        }
+
+        /* ============ SKILLS ============ */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-group {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+        }
+
+        .skill-group h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-item {
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .skill-item:hover {
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+            background: var(--accent-glow);
+        }
+
+        /* ============ EDUCATION ============ */
+        .education-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .education-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .edu-details h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .edu-details .edu-school {
+            color: var(--accent);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .edu-details .edu-meta {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+        .edu-details .edu-info {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ============ CONTACT ============ */
+        .contact-section {
+            background: var(--bg-secondary);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .contact-socials {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .contact-socials a {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .contact-socials a:hover {
+            background: var(--accent-glow);
+            border-color: var(--border-hover);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            text-align: center;
+            padding: 32px 24px;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ============ SCROLL REVEAL ============ */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-item:nth-child(1) { transition-delay: 0s; }
+        .reveal-item:nth-child(2) { transition-delay: 0.1s; }
+        .reveal-item:nth-child(3) { transition-delay: 0.2s; }
+        .reveal-item:nth-child(4) { transition-delay: 0.3s; }
+        .reveal-item:nth-child(5) { transition-delay: 0.4s; }
+        .reveal-item:nth-child(6) { transition-delay: 0.5s; }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 900px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            .featured-project {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                position: fixed;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.95);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 16px 24px;
+                border-bottom: 1px solid var(--border);
+                transform: translateY(-120%);
+                transition: var(--transition);
+                gap: 4px;
+            }
+            nav ul.open {
+                transform: translateY(0);
+            }
+            nav ul li a {
+                padding: 12px 16px;
+                display: block;
+            }
+            .nav-toggle {
+                display: flex;
+            }
+            .hero {
+                padding: 100px 20px 60px;
+            }
+            .hero-avatar {
+                width: 110px;
+                height: 110px;
+            }
+            .section {
+                padding: 60px 20px;
+            }
+            .section-header {
+                margin-bottom: 40px;
+            }
+            .education-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 28px 20px;
+            }
+            .experience-card {
+                padding: 24px 20px;
+            }
+            .exp-header {
+                flex-direction: column;
+                gap: 4px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .hero p {
+                font-size: 0.95rem;
+            }
+            .hero-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-links a {
+                width: 100%;
+                justify-content: center;
+            }
+            .project-links {
+                flex-direction: column;
+            }
+            .project-link {
+                justify-content: center;
+            }
+            .featured-project h3 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">ivo<span>.</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('nav ul').classList.toggle('open');">
+                <span></span><span></span><span></span>
+            </button>
             <ul>
-                <li><a href="#section1">Home</a></li>
-                <li><a href="#section2">Projects</a></li>
-                <li><a href="#section3">Skills</a></li>
-                <li><a href="#section4">Education</a></li>
-                <li><a href="#section5">Contact</a></li>
+                <li><a href="#hero" onclick="closeNav()">Home</a></li>
+                <li><a href="#projects" onclick="closeNav()">Projects</a></li>
+                <li><a href="#experience" onclick="closeNav()">Experience</a></li>
+                <li><a href="#skills" onclick="closeNav()">Skills</a></li>
+                <li><a href="#education" onclick="closeNav()">Education</a></li>
+                <li><a href="#contact" onclick="closeNav()">Contact</a></li>
             </ul>
-        </nav>
+        </div>
+    </nav>
 
-        <section id="section1">
-            <img src="images/Headshot.png" alt="pfp" class="pfp"/>
-            <!-- <img src="images/background.png" alt="background"/> -->
-            <h1>Hi, I'm Ivo. I'm a Computer Science and Business Management Double Major at Tulane University. I hope you enjoy my Portfolio!</h1>
-        </section>
-
-        <section id="section2">
-            <div class="section-content project">
-            <div class="project">
-                <h1>Playstation Trophy Collection Site</h1>
-                <p>This site uses Google Firebase to allow users to create an account. Users can take a PlayStation platinum trophy guide from PSN profiles and input the link into a box. The site then parses that link for all the trophies and their descriptions, displaying them to the user. Users have the option to store the list to their account, where they can view every list they've saved.</p>
-                <div class="buttons">
-                    <a href="https://youtu.be/yIWxYuVdScE" class="button demo" target="_blank"><i class="fab fa-youtube"></i>Demo</a>
-                    <a href="https://github.com/BookableGull/Playstation-Trophy-List-Tracker" class="button github" target="_blank"><i class="fab fa-github"></i>GitHub</a>
-                </div>
-                </div>
-            </div>
-            <div class="project">
-                <div class="section-content project">
-                <h1>AI Driven Chatbot</h1>
-                <p>This chatbot uses the Mistral model, downloaded using Ollama, in Python to take in links for whatever the user wants. Then, so long as the answer can be found in that collection of links, the chatbot can answer any question the user has.</p>
-                <div class="buttons">
-                    <a href="https://youtu.be/ZcEqPX8ey2k" class="button demo" target="_blank"><i class="fab fa-youtube"></i>Demo</a>
-                    <a href="https://github.com/BookableGull/Ollama-URL-Driven-Chatbot" class="button github" target="_blank"><i class="fab fa-github"></i>GitHub</a>
-                </div>
-            </div>
-            </div>
-            <div class="project">
-                <div class="section-content project">
-                <h1>Video Game Backlog Tracker</h1>
-                <p>This program uses parsing to retrieve data from the video game website HowLongToBeat. Specifically, for any game link the user inputs, it fetches data on how long it takes to beat the main story, main + sides, completionist, and all styles. Once the user finishes, all this data is compiled into an Excel sheet for easy viewing. Additionally, there are columns that aggregate the numbers for each category, allowing users to see the total time needed to complete every style for all their games in the list. This program is designed to help users organize their entire gaming backlog conveniently. Furthermore, it provides average completion times for each game in various styles, reducing the need for users to repeatedly check HowLongToBeat for this information.</p>
-                <div class="buttons">
-                    <a href="https://youtu.be/hTlrNO7nZp0" class="button demo" target="_blank"><i class="fab fa-youtube"></i>Demo</a>
-                    <a href="https://github.com/BookableGull/Video-Game-Backlog-Hour-Tracker" class="button github" target="_blank"><i class="fab fa-github"></i>GitHub</a>
-                </div>
-            </div>
-            </div>
-            <div class="project">
-                <div class="section-content project">
-                <h1>Camelot Adventure Game</h1>
-                <p>This is an adventure game written in Java. It utilizes a custom game engine called Camelot, enabling various actions and settings. The objective of the game is to uncover the identity of the murderer at the kingdom's local alchemy shop. Players explore different areas, interact with NPCs, and gather evidence. There are significant consequences if the player fails to identify the killer.</p>
-                <div class="buttons">
-                    <a href="https://youtu.be/ER3U6WqFPZI" class="button demo" target="_blank"><i class="fab fa-youtube"></i>Demo</a>
-                    <a href="https://github.com/BookableGull/CamelotProject" class="button github" target="_blank"><i class="fab fa-github"></i>GitHub</a>
-                </div>
-            </div>
-            </div>
-            <div class="project">
-                <div class="section-content project">
-                    <h1>Wordle</h1>
-                    <p>It's Wordle! A few features have been added. First, you can view the correct word of the game in the terminal, if you so wish. This feature can be removed at any time. Second, the program keeps track of your win/loss record, and you're able to view each game's stats in a text file. These include the correct word of the game, if you won or lost, and how many turns it took to win or lose that game.</p>
-                    <div class="buttons">
-                        <a href = 'https://youtu.be/u-gR4jrbv1o' class="button demo" target="_blank"><i class="fab fa-youtube"></i>Demo</a>
-                        <a href="https://github.com/IvoTomasovich/Wordle" class="button github" target="_blank"><i class="fab fa-github"></i>GitHub</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project">
-                <div class='section-content project'>
-                    <h1>Captcha Generator</h1>
-                    <p>This program/site generates a captcha for the user to solve. The backend and frontend can easily be replicated and added into other websites to provide an extra level of security against bots.</p>
-                    <div class="buttons">
-                        <a href="https://youtu.be/hP7mEXpQ5Lo" class="button demo" target="_blank"><i class="fab fa-youtube"></i>Demo</a>
-                        <a href="https://github.com/IvoTomasovich/Captcha-Generator/tree/master" class="button github" target="_blank"><i class="fab fa-github"></i>Github</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project">
-                <div class='section-content project'>
-                    <h1>2021-2022 Midfielder Analysis</h1>
-                    <p>This project analyzes the performance and market value of top European soccer midfielders across major leagues (Premier League, La Liga, Serie A, Bundesliga, and Ligue 1). Using statistical modeling and data visualization techniques, the project identifies trends in passing efficiency, market values, and composite performance scores to determine which leagues offer the best value for midfielders. The analysis integrates datasets of player statistics and market values, leveraging Python libraries like Pandas, Matplotlib, and Seaborn for data processing, visualization, and insights. Key findings are presented through interactive charts and comparisons, showcasing the relationship between on-field performance metrics and market value. This project demonstrates strong analytical, data modeling, and visualization skills applied to a real-world sports dataset.</p>
-                    <div class="buttons">
-                        <a href="https://youtu.be/qBZGJoBv6gg" class="button demo" target="_blank"><i class="fab fa-youtube"></i>Demo</a>
-                        <a href="https://github.com/IvoTomasovich/2021-2022-Midfielder-Analysis" class="button github" target="_blank"><i class="fab fa-github"></i>Github</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project">
-                <div class='section-content project'>
-                    <h1>Tetris</h1>
-                    <p>This project is a classic Tetris game developed using C and OpenGL, showcasing core game mechanics like piece movement, rotation, and collision detection. The game incorporates efficient rendering techniques and GLSL shaders to deliver smooth, responsive gameplay. Designed with modularity and scalability in mind, this project serves as both a functional game and a demonstration of fundamental graphics programming and game design principles. It highlights my ability to combine low-level programming with creative problem-solving to build interactive applications.</p>
-                    <div class="buttons">
-                        <a href="https://youtu.be/kv5UJtBYx1U" class="button demo" target="_blank"><i class="fab fa-youtube"></i>Demo</a>
-                        <a href="https://github.com/IvoTomasovich/Tetris" class="button github" target="_blank"><i class="fab fa-github"></i>Github</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="section3">
-            <div class="section-content project">
-                <div class="project">
-            <div class="section-content">
-            <h1>My Skills</h1>
-            <div class="logo-container">
-            <img src="images/pythonlogo.svg" alt="python" class="skill-logo"/>
-            <img src="images/java.png" alt="java" class="skill-logo"/>
-            <img src="images/htmllogo.png" alt="html" class="skill-logo"/>
-            <img src="images/css.png" alt="css" class="skill-logo"/>
-            <img src="images/JavaScript-Symbol.png" alt="javascript" class="skill-logo"/>
-            <img src="images/react.png" alt="react" class="skill-logo"/>
-            <img src="images/firebase.png" alt="firebase" class="skill-logo"/>
-            <img src="images/csharp.png" alt="csharp" class="skill-logo"/>
-            <img src="images/c.png" alt="c" class="skill-logo"/>
-            <img src="images/c++.webp" alt="c++" class="skill-logo"/>
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <img src="images/Headshot.png" alt="Ivo Tomasovich" class="hero-avatar">
+            <div class="hero-label">Developer &amp; Consultant</div>
+            <h1>Hi, I'm <span class="highlight">Ivo Tomasovich</span></h1>
+            <p>Computer Science &amp; Management double major at Tulane University. I build apps, solve business problems, and ship real products.</p>
+            <div class="hero-links">
+                <a href="#projects" class="btn-primary"><i class="fas fa-code"></i> View Projects</a>
+                <a href="#contact" class="btn-secondary"><i class="fas fa-envelope"></i> Get in Touch</a>
             </div>
         </div>
-        </div>
-        </div>
-        </section>
+    </section>
 
-        <section id="section4">
-            <div class="section-content project">
-                <div class="project">
-            <div class="section-content education-container">
-                <img src="images/Tulane.png" alt='tulane' class="tulane"/>
-                <div class="education-text">
-                    <h1>Bachelor of Science in Management</h1>
-                    <h2>Tulane University</h2>
-                    <h2>Graduate in 2026</h2>
-                    <h2>GPA: 3.715/4</h2>
-                    <ul>
-                        <li>Major in Computer Science</li>
-                        <li>Major in Business Management</li>
-                        <li>Minor in Business Legal Studies</li>
+    <section class="section" id="projects">
+        <div class="section-inner">
+            <div class="section-header reveal-item">
+                <span class="section-label">Projects</span>
+                <h2>Things I've Built</h2>
+                <p>From mobile apps on the App Store to AI-driven tools and web applications.</p>
+            </div>
+
+            <div class="featured-project reveal-item">
+                <div class="featured-badge"><i class="fas fa-star"></i> Featured Project</div>
+                <h3>Intershop Go</h3>
+                <p class="project-desc">A cross-platform mobile marketplace app that connects shoppers with local international grocery stores for pickup orders. Built from the ground up and launched on both iOS and Android with real payment processing, store onboarding, and a referral system.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">Expo</span>
+                    <span class="tech-tag">Supabase</span>
+                    <span class="tech-tag">Stripe</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">JavaScript</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://apps.apple.com/us/app/intershop-go/id6755796914" target="_blank" class="project-link apple"><i class="fab fa-apple"></i> App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.ivotomasovich.intershop" target="_blank" class="project-link google"><i class="fab fa-google-play"></i> Google Play</a>
+                </div>
+            </div>
+
+            <div class="project-grid">
+                <div class="project-card reveal-item">
+                    <div class="card-icon"><i class="fas fa-trophy"></i></div>
+                    <h3>PlayStation Trophy Tracker</h3>
+                    <p>Web app that scrapes PlayStation trophy lists from PSNProfiles links, displays them in organized tables, and lets users save lists to their Firebase account.</p>
+                    <div class="card-tech">JavaScript &middot; HTML &middot; CSS &middot; Firebase &middot; DOM Parser</div>
+                    <div class="card-links">
+                        <a href="https://youtu.be/yIWxYuVdScE" target="_blank"><i class="fab fa-youtube"></i> Demo</a>
+                        <a href="https://github.com/BookableGull/Playstation-Trophy-List-Tracker" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal-item">
+                    <div class="card-icon"><i class="fas fa-robot"></i></div>
+                    <h3>AI-Driven Chatbot</h3>
+                    <p>A chatbot powered by Mistral (via Ollama) that ingests user-provided URLs and answers questions using the content from those sources.</p>
+                    <div class="card-tech">Python &middot; Mistral &middot; Ollama &middot; LangChain</div>
+                    <div class="card-links">
+                        <a href="https://youtu.be/ZcEqPX8ey2k" target="_blank"><i class="fab fa-youtube"></i> Demo</a>
+                        <a href="https://github.com/BookableGull/Ollama-URL-Driven-Chatbot" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal-item">
+                    <div class="card-icon"><i class="fas fa-gamepad"></i></div>
+                    <h3>Video Game Backlog Tracker</h3>
+                    <p>Parses HowLongToBeat data to compile completion times across game styles into an Excel sheet, helping users organize their gaming backlog.</p>
+                    <div class="card-tech">Python &middot; Web Scraping &middot; Excel</div>
+                    <div class="card-links">
+                        <a href="https://youtu.be/hTlrNO7nZp0" target="_blank"><i class="fab fa-youtube"></i> Demo</a>
+                        <a href="https://github.com/BookableGull/Video-Game-Backlog-Hour-Tracker" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal-item">
+                    <div class="card-icon"><i class="fas fa-chess-knight"></i></div>
+                    <h3>Camelot Adventure Game</h3>
+                    <p>A Java-based adventure game where players explore a kingdom, interact with NPCs, and gather evidence to identify a murderer at an alchemy shop.</p>
+                    <div class="card-tech">Java &middot; Custom Game Engine</div>
+                    <div class="card-links">
+                        <a href="https://youtu.be/ER3U6WqFPZI" target="_blank"><i class="fab fa-youtube"></i> Demo</a>
+                        <a href="https://github.com/BookableGull/CamelotProject" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal-item">
+                    <div class="card-icon"><i class="fas fa-cube"></i></div>
+                    <h3>Tetris</h3>
+                    <p>Classic Tetris built with C and OpenGL, featuring GLSL shaders, collision detection, and smooth rendering for responsive gameplay.</p>
+                    <div class="card-tech">C &middot; OpenGL &middot; GLSL</div>
+                    <div class="card-links">
+                        <a href="https://youtu.be/kv5UJtBYx1U" target="_blank"><i class="fab fa-youtube"></i> Demo</a>
+                        <a href="https://github.com/IvoTomasovich/Tetris" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal-item">
+                    <div class="card-icon"><i class="fas fa-spell-check"></i></div>
+                    <h3>Wordle</h3>
+                    <p>A Wordle clone with win/loss tracking, game stats history, and optional word reveal stored in persistent text files.</p>
+                    <div class="card-tech">Python</div>
+                    <div class="card-links">
+                        <a href="https://youtu.be/u-gR4jrbv1o" target="_blank"><i class="fab fa-youtube"></i> Demo</a>
+                        <a href="https://github.com/IvoTomasovich/Wordle" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal-item">
+                    <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Captcha Generator</h3>
+                    <p>A reusable captcha system with both frontend and backend that can be integrated into any website for bot protection.</p>
+                    <div class="card-tech">JavaScript &middot; HTML &middot; CSS</div>
+                    <div class="card-links">
+                        <a href="https://youtu.be/hP7mEXpQ5Lo" target="_blank"><i class="fab fa-youtube"></i> Demo</a>
+                        <a href="https://github.com/IvoTomasovich/Captcha-Generator/tree/master" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal-item">
+                    <div class="card-icon"><i class="fas fa-futbol"></i></div>
+                    <h3>Midfielder Analysis</h3>
+                    <p>Statistical analysis of European soccer midfielders across 5 leagues, using regression models and visualizations to evaluate performance vs. market value.</p>
+                    <div class="card-tech">Python &middot; Pandas &middot; Matplotlib &middot; Seaborn</div>
+                    <div class="card-links">
+                        <a href="https://youtu.be/qBZGJoBv6gg" target="_blank"><i class="fab fa-youtube"></i> Demo</a>
+                        <a href="https://github.com/IvoTomasovich/2021-2022-Midfielder-Analysis" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="experience" style="background: var(--bg-secondary);">
+        <div class="section-inner">
+            <div class="section-header reveal-item">
+                <span class="section-label">Experience</span>
+                <h2>Where I've Worked</h2>
+            </div>
+
+            <div class="experience-list">
+                <div class="experience-card reveal-item">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-company">City of New Orleans — City Council</div>
+                            <h3>Applied AI Consultant</h3>
+                        </div>
+                        <span class="exp-date">Aug 2025 — Present</span>
+                    </div>
+                    <div class="exp-location">New Orleans, LA &middot; Client-Engaged Capstone</div>
+                    <ul class="exp-bullets">
+                        <li>Improved transcript accuracy by 90% for City Council meeting records by developing a production-ready correction system processing 100+ names and 2,000+ street locations per transcript</li>
+                        <li>Designed a context-aware NER system that categorizes 2,000+ glossary terms into person vs. location entities, eliminating misclassification errors</li>
+                        <li>Delivered a testing framework with 300+ error test cases across phonetic variations and hyphenation patterns with confidence scoring for human-in-the-loop review</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card reveal-item">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-company">Pan-American Life Insurance Group</div>
+                            <h3>Enterprise Architecture Intern</h3>
+                        </div>
+                        <span class="exp-date">May 2025 — Aug 2025</span>
+                    </div>
+                    <div class="exp-location">New Orleans, LA</div>
+                    <ul class="exp-bullets">
+                        <li>Supported DevOps migration by coordinating with stakeholders and scripting the conversion of three legacy platforms into a modern DevOps platform</li>
+                        <li>Maintained a multi-million-dollar enterprise application portfolio by managing updates and developing sync scripts for hundreds of server records</li>
+                        <li>Improved architecture data for continuity planning by updating SaaS inventory and capturing platform resiliency details for disaster recovery</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card reveal-item">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-company">SupplyCare LLC</div>
+                            <h3>Consulting Analyst</h3>
+                        </div>
+                        <span class="exp-date">Aug 2025 — Dec 2025</span>
+                    </div>
+                    <div class="exp-location">New Orleans, LA &middot; Capstone</div>
+                    <ul class="exp-bullets">
+                        <li>Co-led a 6-person team to evaluate 6 software platforms using a weighted scorecard; delivered a shortlist and recommendation adopted by the client</li>
+                        <li>Built executive-ready presentations and secured approval for the implementation roadmap</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card reveal-item">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-company">Outlier AI</div>
+                            <h3>Prompt Engineer</h3>
+                        </div>
+                        <span class="exp-date">May 2024 — Aug 2024</span>
+                    </div>
+                    <div class="exp-location">Remote</div>
+                    <ul class="exp-bullets">
+                        <li>Developed software engineering quality prompts in Python and JavaScript for AI training, achieving an average rating of 4/5</li>
+                        <li>Evaluated user-generated prompts with a 95% accuracy rate based on quality standards</li>
                     </ul>
                 </div>
             </div>
         </div>
+    </section>
+
+    <section class="section" id="skills">
+        <div class="section-inner">
+            <div class="section-header reveal-item">
+                <span class="section-label">Skills</span>
+                <h2>What I Work With</h2>
             </div>
-        </section>
-        
-        <section id="section5">
-            <div class="section-content">
-                <h1>Contact Me</h1>
-                <h2>You can message me directly at ivotomasovich@gmail.com, itomasovich@tulane.edu, or directly from here.</h2>
-                <form id="contact-form">
-                    <input type="text" id="email" name="email" placeholder="Email" required>
-                    <textarea id="message" name="message" placeholder="Message"></textarea>
-                    <button type="submit">Send</button>
-                </form>
+
+            <div class="skills-grid">
+                <div class="skill-group reveal-item">
+                    <h3>Languages</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">JavaScript</span>
+                        <span class="skill-item">TypeScript</span>
+                        <span class="skill-item">Java</span>
+                        <span class="skill-item">C</span>
+                        <span class="skill-item">C++</span>
+                        <span class="skill-item">C#</span>
+                        <span class="skill-item">SQL</span>
+                        <span class="skill-item">HTML</span>
+                        <span class="skill-item">CSS</span>
+                        <span class="skill-item">GLSL</span>
+                    </div>
+                </div>
+
+                <div class="skill-group reveal-item">
+                    <h3>Frameworks &amp; Tools</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">React Native</span>
+                        <span class="skill-item">Node.js</span>
+                        <span class="skill-item">Expo</span>
+                        <span class="skill-item">LangChain</span>
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">Linux</span>
+                        <span class="skill-item">NPM</span>
+                    </div>
+                </div>
+
+                <div class="skill-group reveal-item">
+                    <h3>Platforms &amp; Libraries</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Firebase</span>
+                        <span class="skill-item">Supabase</span>
+                        <span class="skill-item">Stripe</span>
+                        <span class="skill-item">Pandas</span>
+                        <span class="skill-item">PyTorch</span>
+                        <span class="skill-item">Mistral</span>
+                        <span class="skill-item">OpenAI</span>
+                        <span class="skill-item">OpenGL</span>
+                        <span class="skill-item">Matplotlib</span>
+                    </div>
+                </div>
+
+                <div class="skill-group reveal-item">
+                    <h3>Spoken Languages</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">English (Fluent)</span>
+                        <span class="skill-item">Croatian (Fluent)</span>
+                    </div>
+                </div>
             </div>
-        </section>
-        <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-        <script src="scripts/main.js"></script>
-        <script src="https://unpkg.com/scrollreveal"></script>
-        <script src="scrollReveal.js"></script>
-    </body>
+        </div>
+    </section>
+
+    <section class="section" id="education" style="background: var(--bg-secondary);">
+        <div class="section-inner">
+            <div class="section-header reveal-item">
+                <span class="section-label">Education</span>
+                <h2>Where I Studied</h2>
+            </div>
+
+            <div class="education-card reveal-item">
+                <img src="images/Tulane.png" alt="Tulane University">
+                <div class="edu-details">
+                    <h3>Bachelor of Science — Double Major</h3>
+                    <div class="edu-school">Tulane University</div>
+                    <div class="edu-meta">August 2022 — May 2026 &middot; New Orleans, LA</div>
+                    <div class="edu-info">
+                        Computer Science (GPA: 3.9) &middot; Management (GPA: 3.7) &middot; Overall GPA: 3.8<br>
+                        Awards: Tulane Merit Award, Tulane Scholarship, LA NOLA Promise Scholarship, Louisiana TOPS Award
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+        <div class="section-inner">
+            <div class="contact-content">
+                <div class="section-header reveal-item" style="text-align: center;">
+                    <span class="section-label">Contact</span>
+                    <h2>Get in Touch</h2>
+                    <p>Feel free to reach out at ivotomasovich@gmail.com or itomasovich@tulane.edu.</p>
+                </div>
+
+                <div class="contact-socials reveal-item">
+                    <a href="https://github.com/IvoTomasovich" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="mailto:ivotomasovich@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Ivo Tomasovich. All rights reserved.
+    </footer>
+
+    <script>
+        function closeNav() {
+            document.querySelector('nav ul').classList.remove('open');
+        }
+
+        function revealOnScroll() {
+            var items = document.querySelectorAll('.reveal-item');
+            items.forEach(function(item) {
+                var rect = item.getBoundingClientRect();
+                var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                if (rect.top < windowHeight * 0.88) {
+                    item.classList.add('visible');
+                }
+            });
+        }
+
+        document.addEventListener('scroll', revealOnScroll);
+        document.addEventListener('DOMContentLoaded', revealOnScroll);
+
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
 </html>
